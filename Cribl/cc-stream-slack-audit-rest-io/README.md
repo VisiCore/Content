@@ -52,7 +52,7 @@ This pack is optionally plug-and-play with the [Slack Add-on for Splunk](https:/
 
 ## Upgrades
 
-As a better practice, please do not modify sources, routes, or pipelines within the pack. All control is designed to be handled through pack variables. If you need functionality not present in the sources, routes, or pipelines, please reach out to <CriblPacks@visicoretech.com> to log a feature request. Modifying these core items can make upgrades... difficult.
+As a better practice, please do not modify sources, routes, or pipelines within the pack. Do not insert this Pack (as a Pipeline) into the global Routes table outside of the Pack. All control is designed to be handled through pack variables. If you need functionality not present in the sources, routes, or pipelines, please reach out to <CriblPacks@visicoretech.com> to log a feature request. Modifying these core items can make upgrades... difficult.
 
 To upgrade, use the `Upgrade` option through the `Actions` column on the packs page. If you upload/overwrite, it will destroy any variable settings you have configured (like your `slack_oauth_token`).
 
@@ -96,8 +96,8 @@ To contact us, please email <CriblPacks@VisiCoreTech.com>.
 
 ## Contributing to the Pack
 
-To contribute to this Pack, or to report any issues or enhancement requests, please connect with **VisiCore Tech** on [Cribl Community Slack](https://cribl-community.slack.com) or email us at: <CriblPacks@visicoretech.com>.
+To contribute to the Pack, or to report any issues or enhancement requests, please connect with **VisiCore Tech** on [Cribl Community Slack](https://cribl-community.slack.com) or email us at: <CriblPacks@visicoretech.com>.
 
 ## License
-
+---
 This Pack uses the following license: [`Apache 2.0`](https://github.com/criblio/appscope/blob/master/LICENSE).
