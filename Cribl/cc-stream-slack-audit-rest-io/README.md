@@ -1,4 +1,4 @@
-# VisiCore Slack Audit Logs REST Collector
+# VisiCore Slack Audit Logs Rest Collector
 ----
 
 This pack pulls all audit activity from the Slack Audit Logs API into your data observability pipeline with audit events like user and AI activity.
@@ -44,15 +44,19 @@ If you are not already signed into Slack, please do so. Follow the instructions 
 6. **Always** remember to **Commit and Deploy** after changing variables.
 7. Celebrate! You now have Slack Audit Logs flowing into your Cribl instance.
 
+## Destination
+
+By default, installing this pack automatically enables the collector and forwards to the configured default destination for the worker group. There are two options for customizing the destination of a collector in a pack. The simple way is to create a new destination **within the pack** itself, and then update the `destination` variable with the destination output ID. The more complicated way uses the Output Router as a default destination for the worker group allowing you to configure the destination outside of the pack. See [Route to any destination with Cribl Packs using the Output Router](https://cribl.io/blog/the-power-of-an-output-router-as-a-default-destination-in-cribl-packs/) for details on the second approach.
+
 ## SIEM
 
-If your System of Analysis supports the `index` metadata field, update the pack variable `slack_audit_log_index` to reflect your target index.
+If your System of Analysis supports the `index` metadata field, update the pack variable `slack_audit_log_index` to reflect your target index, and set `enable_splunk_fields` to `true` to enable the index, sourcetype, source, and host fields.
 
 This pack is optionally plug-and-play with the [Slack Add-on for Splunk](https://splunkbase.splunk.com/app/4986) and [Slack Audit App for Splunk](https://splunkbase.splunk.com/app/5013) . Note that the app expects an index value of `slack_audit` if you want to avoid customizing the Splunk side. Create the index in Splunk before updating this variable.
 
 ## Upgrades
 
-As a better practice, please do not modify sources, routes, or pipelines within the pack. Do not insert this Pack (as a Pipeline) into the global Routes table outside of the Pack. All control is designed to be handled through pack variables. If you need functionality not present in the sources, routes, or pipelines, please reach out to <CriblPacks@visicoretech.com> to log a feature request. Modifying these core items can make upgrades... difficult.
+As a better practice, please do not modify sources, routes, or pipelines within the pack. Do not insert this Pack (as a Pipeline) into the global Routes table outside of the Pack. All control is designed to be handled through pack variables. If you need functionality not present in the sources, routes, or pipelines, please reach out to <CriblPacks@visicoretech.com> to log a feature request. Modifying these core items can make upgrades... difficult. For a seamless, Cribl-native way to set non-pack destinations for pack sources, see [The power of an Output Router as a default destination in Cribl Packs](https://cribl.io/blog/the-power-of-an-output-router-as-a-default-destination-in-cribl-packs/).
 
 To upgrade, use the `Upgrade` option through the `Actions` column on the packs page. If you upload/overwrite, it will destroy any variable settings you have configured (like your `slack_oauth_token`).
 
@@ -75,6 +79,7 @@ To contact us, please email <CriblPacks@VisiCoreTech.com>.
 ### Version 1.0.0 - 2025-12-18
 
 *  **README**: Final cleanup before submission
+*  **State Tracking**: Guarantee accurate event processing and avoid duplicates by always pulling from the timestamp of the last succesfully pulled event
 *  **Default Index**: Changed default index from `slack_audit` to `main` to avoid potential invalid index errors in downstream systems
 *  **Data Samples**: Upload distinct data samples for: all actions (small), all actions (large), user activity only, AI activity only
 *  **Pipeline cleanup**: Remove unnecessary fields - stick to standard metadata fields only
@@ -96,7 +101,7 @@ To contact us, please email <CriblPacks@VisiCoreTech.com>.
 
 ## Contributing to the Pack
 
-To contribute to the Pack, or to report any issues or enhancement requests, please connect with **VisiCore Tech** on [Cribl Community Slack](https://cribl-community.slack.com) or email us at: <CriblPacks@visicoretech.com>.
+To contribute to this Pack, or to report any issues or enhancement requests, please connect with **VisiCore Tech** on [Cribl Community Slack](https://cribl-community.slack.com) or email us at: <CriblPacks@visicoretech.com>.
 
 ## License
 ---
